@@ -28,8 +28,7 @@ git push
 # Send a POST request to the API endpoint
 Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60 -OutFile 'sample.txt'
 
-$response = Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60
-
+$response = Invoke-RestMethod -Uri $apiUrl -Method GET -ContentType "application/json" -ErrorAction Stop -TimeoutSec 60
 
 
 # Print the response (optional)
