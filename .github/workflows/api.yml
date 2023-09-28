@@ -1,0 +1,17 @@
+name: API Trigger
+
+on: push  # You can customize when the workflow should run (e.g., on schedule, manual, etc.)
+
+jobs:
+  trigger-api:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: run powershell script
+      shell: pwsh
+      run: |
+        # Run the PowerShell script
+        Invoke-Pester ./api-trigger.ps1 -Passthru
