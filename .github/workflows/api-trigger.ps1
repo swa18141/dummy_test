@@ -7,7 +7,7 @@ $headers = @{
     # Add any other headers here if required
 }
 # Specify the path to the existing file in your repository
-$filePath = "path/to/your/file.txt"
+$filePath = "sample.txt"
 
 # Sample data to add to the file
 $sampleData = "This is some sample data to add to the file."
@@ -23,10 +23,10 @@ $newContent | Set-Content -Path $filePath
 
 # Commit the changes to the repository
 git add $filePath
-git commit -m "Add sample data to file.txt"
+git commit -m "Add sample data to sample.txt"
 git push
 # Send a POST request to the API endpoint
-Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60 -OutFile 'file.txt'
+Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60 -OutFile 'sample.txt'
 
 $response = Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60
 
