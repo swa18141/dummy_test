@@ -1,19 +1,18 @@
-
-# Define your API endpoint URL
+# Specify the API URL
 $apiUrl = "https://mocktarget.apigee.net/json"
 
-# Define the request headers (if needed)
-$headers = @{
-    "Content-Type" = "application/json"
-    # Add any other headers here if required
+try {
+    # Make the API request using Invoke-RestMethod
+    $response = Invoke-RestMethod -Uri $apiUrl -Method Get -ContentType "application/json" -ErrorAction Stop -TimeoutSec 60
+
+    # Handle the API response here
+    Write-Host "HTTP Status Code: $($response.StatusCode)"
+    Write-Host "Response Content: $($response.Content)"
+
+    # Save the response to a file
+    $response.Content | Out-File "test.json" -Encoding UTF8
+} catch {
+    # Handle any errors that occur during the API request
+    Write-Host "Error occurred: $_"
 }
 
-# Send a POST request to the API endpoint
-Invoke-RestMethod -Uri $apiUrl -Method Get -ContentType "application/json" -ErrorAction Stop -TimeoutSec 60 -OutFile "test.json"
-
-
-$response = Invoke-RestMethod -Uri $apiUrl -Method Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60
-
-# Print the response (optional)
-Write-Host "API Response:"
-Write-Host $response
