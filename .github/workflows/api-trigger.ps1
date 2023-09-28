@@ -9,7 +9,7 @@ $headers = @{
 }
 
 # Send a POST request to the API endpoint
-Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60 -OutFile "test.json"
+Invoke-WebRequest -Uri $apiUrl -OutFile "test.json"
 
 $response = Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60
 
