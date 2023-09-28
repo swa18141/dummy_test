@@ -6,12 +6,6 @@ $headers = @{
     "Content-Type" = "application/json"
     # Add any other headers here if required
 }
-
-# Send a POST request to the API endpoint
-Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60 
-
-$response = Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60
-
 # Specify the path to the existing file in your repository
 $filePath = "path/to/your/file.txt"
 
@@ -31,6 +25,12 @@ $newContent | Set-Content -Path $filePath
 git add $filePath
 git commit -m "Add sample data to file.txt"
 git push
+# Send a POST request to the API endpoint
+Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60 -OutFile 'file.txt'
+
+$response = Invoke-RestMethod -Uri $apiUrl -Method:Get -ContentType "application/json" -ErrorAction:Stop -TimeoutSec 60
+
+
 
 # Print the response (optional)
 Write-Host "API Response:"
